@@ -1,5 +1,5 @@
-import { Inventory } from "../features/inventory/Inventory.js";
-import { CurrencyFilter } from "../features/currencyFilter/CurrencyFilter.js";
+import { Inventory } from "./features/inventory/Inventory";
+import { CurrencyFilter } from "./features/currencyFilter/CurrencyFilter";
 // Import the Cart component here.
 
 // Render the Cart component below <Inventory />
