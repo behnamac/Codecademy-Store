@@ -1,3 +1,4 @@
+import { JSX } from 'react';
 import {
   calculateTotal,
   getCurrencySymbol,
@@ -15,18 +16,19 @@ interface CartProps {
 export const Cart = (props: CartProps) => {
   const { cart, currencyFilter, dispatch } = props;
 
-  const onInputChangeHandler = (name, input) => {
+  const onInputChangeHandler = (name: string, input: string) => {
     // If the user enters a bad value...
     if (input === '') {
       return;
     }
 
     // Otherwise, convert the input into a number and pass it along as the newQuantity.
-    const newQuantity = Number(input);
+    const newQuantity: number = Number(input);
 
     // Dispatch an action to change the quantity of the given name and quantity.
-dispatch(
-      changeItemQuantity({ name, newQuantity }));
+    dispatch(
+      changeItemQuantity({ name, newQuantity })
+    );
   };
 
   // Use the cart and currencyFilter slices to render their data.
@@ -46,8 +48,8 @@ dispatch(
     </div>
   );
 
-  function createCartItem(name) {
-    const item = cart[name];
+  function createCartItem(name: string): JSX.Element | undefined {
+    const item: { quantity: number } = cart[name];
 
     if (item.quantity === 0) {
       return;
@@ -59,11 +61,11 @@ dispatch(
         <select
           className="item-quantity"
           value={item.quantity}
-          onChange={(e) => {
+          onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
             onInputChangeHandler(name, e.target.value);
           }}
         >
-          {[...Array(100).keys()].map((_, index) => (
+          {[...Array(100).keys()].map((_, index: number) => (
             <option key={index} value={index}>
               {index}
             </option>

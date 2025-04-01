@@ -10,7 +10,7 @@ interface AppProps {
     inventory: any[]; 
     cart: Record<string, { quantity: number }>; 
   };
-  dispatch: (action: any) => void; 
+  dispatch: (action: any) => void; // Replace 'any' with the specific action type if known
 }
 
  const App = (props: AppProps) => {
