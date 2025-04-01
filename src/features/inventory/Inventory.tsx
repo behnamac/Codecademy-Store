@@ -1,4 +1,4 @@
-import  { useEffect } from 'react';
+import  { JSX, useEffect } from 'react';
 import {
   calculatePrice,
   getCurrencySymbol,
@@ -20,11 +20,11 @@ interface InventoryProps {
 
 export const Inventory = ({ inventory, currencyFilter, dispatch }: InventoryProps) => {
   const onMount = () => {
-    dispatch(loadData());
+    dispatch(loadData(inventory));
   };
   useEffect(onMount, [dispatch]);
 
-  const onClickHandler = (inventoryItem) => {
+  const onClickHandler = (inventoryItem: InventoryItem): void => {
     dispatch(addItem(inventoryItem));
   };
 
@@ -34,9 +34,10 @@ export const Inventory = ({ inventory, currencyFilter, dispatch }: InventoryProp
 
   return <ul id="inventory-container">{inventory.map(createInventoryItem)}</ul>;
 
-  function createInventoryItem(inventoryItem) {
+ 
+  function createInventoryItem(inventoryItem: InventoryItem): JSX.Element {
     const { price, name, img } = inventoryItem;
-    const displayPrice = calculatePrice(price, currencyFilter);
+    const displayPrice: number = calculatePrice(price, currencyFilter);
     return (
       <li key={name} className="item">
         <img src={img} alt={''} />

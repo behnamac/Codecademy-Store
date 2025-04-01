@@ -9,7 +9,15 @@ const root = createRoot(document.getElementById("root")!);
 const render = () => {
   root.render(
     <StrictMode>
-      <App state={store.getState()} dispatch={store.dispatch} />
+      <App state={{
+        ...store.getState(),
+        cart: Object.fromEntries(
+          Object.entries(store.getState().cart).map(([key, value]) => [
+            key,
+            { quantity: value.quantity || 0, price: value.price },
+          ])
+        )
+      }} dispatch={store.dispatch} />
     </StrictMode>
   );
 };

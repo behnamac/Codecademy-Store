@@ -13,7 +13,7 @@ export const currencyFilterReducer = (
   }
 };
 
-interface SetCurrencyAction {
+ interface SetCurrencyAction {
   type: 'currencyFilter/setCurrency';
   payload: string;
 }
