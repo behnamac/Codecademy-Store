@@ -4,7 +4,7 @@ import {
 } from '../../utilities/utilities';
 
 // Import the changeItemQuantity() action creator.
-
+import { changeItemQuantity } from './cartSlice';
 // Define the type for the props
 interface CartProps {
   cart: Record<string, { quantity: number }>;
@@ -25,12 +25,14 @@ export const Cart = (props: CartProps) => {
     const newQuantity = Number(input);
 
     // Dispatch an action to change the quantity of the given name and quantity.
-
+dispatch(
+      changeItemQuantity({ name, newQuantity }));
   };
 
   // Use the cart and currencyFilter slices to render their data.
-  const cartElements = 'REPLACE_ME';
-  const total = 0;
+  const cartElements = Object.keys(cart).map((name) => {
+    return createCartItem(name);});
+  const total = calculateTotal(cart, currencyFilter);
 
   return (
     <div id="cart-container">

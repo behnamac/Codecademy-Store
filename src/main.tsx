@@ -4,8 +4,15 @@ import "./index.css";
 import App from "./App.tsx";
 import store from "./store.ts";
 
-createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <App state={store.getState()} dispatch={store.dispatch} />
-  </StrictMode>
-);
+const root = createRoot(document.getElementById("root")!);
+
+const render = () => {
+  root.render(
+    <StrictMode>
+      <App state={store.getState()} dispatch={store.dispatch} />
+    </StrictMode>
+  );
+};
+
+render();
+store.subscribe(render);
