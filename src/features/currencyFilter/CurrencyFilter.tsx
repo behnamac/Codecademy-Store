@@ -3,7 +3,7 @@ import { setCurrency } from './currencyFilterSlice';
 import { Dispatch } from 'redux';
 
 export const CurrencyFilter = ({ currencyFilter, dispatch }: { currencyFilter: string; dispatch: Dispatch }) => {
-  const onClickHandler = (currency) => {
+  const onClickHandler = (currency: string): void => {
     dispatch(setCurrency(currency));
   };
 
@@ -14,7 +14,11 @@ export const CurrencyFilter = ({ currencyFilter, dispatch }: { currencyFilter: s
     </div>
   );
 
-  function createCurrencyButton(currency) {
+  interface CurrencyButtonProps {
+    currency: string;
+  }
+
+  function createCurrencyButton(currency: CurrencyButtonProps['currency']): JSX.Element {
     return (
       <button
         className={`currency-button ${

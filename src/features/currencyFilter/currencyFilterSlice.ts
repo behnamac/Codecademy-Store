@@ -1,7 +1,7 @@
 const initialCurrencyFilter = 'USD';
 export const currencyFilterReducer = (
   currencyFilter = initialCurrencyFilter,
-  action
+  action: { type: string; payload: any }
 ) => {
   switch (action.type) {
     case 'currencyFilter/setCurrency': {
@@ -13,7 +13,12 @@ export const currencyFilterReducer = (
   }
 };
 
-export const setCurrency = (currency) => {
+interface SetCurrencyAction {
+  type: 'currencyFilter/setCurrency';
+  payload: string;
+}
+
+export const setCurrency = (currency: string): SetCurrencyAction => {
   return {
     type: 'currencyFilter/setCurrency',
     payload: currency,
